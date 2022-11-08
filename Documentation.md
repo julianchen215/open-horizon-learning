@@ -9,10 +9,14 @@ are the issues that I have accomplished so far.
 These types of issues are the most common ones that I have seen across all of the repositories. They are all labeled "good first issue", which is the reason as to why I began working on these types of questions first.
 
 <img width="437" alt="Screenshot 2022-11-08 075206" src="https://user-images.githubusercontent.com/62410569/200573725-9c0cd043-8fbd-400b-aa56-5758b4d18b5d.png">
+
 I did not know what a shield was at first, but after watching this [tutorial](https://www.youtube.com/watch?v=Dl-ekLb4quE&t=274s) on how to add shields in Github, it was a relatively straightforward assignment.
+
 
 ### Step 1
 Look at the architecture in the repository that is required to run the software and any other shields that needs to be added to the README, like license or contributor shields. Proceed to [shields.io](https://shields.io/). 
+
+
 ### Step 2
 For the architecture shields, click on "Build". Scroll down the page until you see "Your Badge" followed by three fields labeled as "label", "message", and "color":  
 <img width="252" alt="image" src="https://user-images.githubusercontent.com/62410569/200581554-a78dea2f-489b-4fed-8269-ecf2b8c9fa56.png">
