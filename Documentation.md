@@ -60,4 +60,68 @@ I learned more about formatting in Github and how to make a table.
 
 ## Adding Makefile targets and horizon files
 This a more difficult assignment and I am currently in the process of figuring out what PHONY targets are, how to create the requested Makefiles, and how to test and verify with an Open Horizon Agent.
+### Step 1
+Fork the repository and clone the files onto your laptop.
+### Step 2
+Add the following Makefile targets:
+
+    publish-service:
+
+    publish-pattern:
+
+    register-pattern:
+    
+and populate the targets with the following code:
+
+<img width="463" alt="image" src="https://user-images.githubusercontent.com/62410569/201499034-06c107b9-167d-4e97-88e8-38cfd62cd279.png">
+The newly created targets must also be listed in Phony:
+<img width="583" alt="image" src="https://user-images.githubusercontent.com/62410569/201499169-6782e1ba-c795-4abf-86e0-1869701e1d32.png">
+
+### Step 3
+We must now install an Open Horizon agent onto our laptop. Unfortunately the Open Horizon scripts use `systemd` to deploy daemon processes but the WSL2 ubuntu image uses `init.d` as PID 1 instead of `systemd`. This prevents the installation of the Open Horizon daemons. To fix this, follow these [instructions](https://github.com/open-horizon/devops/pull/113/files?short_path=d2366d6#diff-d2366d693f6bd1eecc1802726c1181474816e9fafb25e3e98db3f85073150572).
+
+### Step 4
+Create a folder and open WSL. Gain read and write access to all files/commands by rooting. To do this, use the command `sudo -i` and input your password for your laptop. After the account has been rooted, cd into the folder that was created. Next, input the following lines of code into the terminal:
+```
+export HZN_ORG_ID=examples
+export HZN_DEVICE_TOKEN= # specify a string value for a token
+export HZN_DEVICE_ID= # specify a string value for the node ID
+export HZN_EXCHANGE_USER_AUTH=student:RCOS
+export HZN_EXCHANGE_URL=http://132.177.125.232:3090/v1
+export HZN_FSS_CSSURL=http://132.177.125.232:9443/
+export HZN_AGBOT_URL=http://132.177.125.232:3111/
+export HZN_SDO_SVC_URL=http://132.177.125.232:9008/api
+```
+where HZN_DEVICE_TOKEN can be your name and HZN_DEVICE_ID can be your device name. Next, create a file named `agent-install.cfg` inside the folder. Open `agent-install.cfg` and input the urls from the terminal:
+```
+export HZN_EXCHANGE_URL=http://132.177.125.232:3090/v1
+export HZN_FSS_CSSURL=http://132.177.125.232:9443/
+export HZN_AGBOT_URL=http://132.177.125.232:3111/
+export HZN_SDO_SVC_URL=http://132.177.125.232:9008/api
+```
+Now as **root** input the following command:
+
+`curl -sSL https://github.com/open-horizon/anax/releases/latest/download/agent-install.sh | bash -s -- -i anax: -k ./agent-install.cfg -c css: -p IBM/pattern-ibm.helloworld -w '*' -T 120`
+To see if you have successfully installed the agent, try typing in some commands. If you type in `hzn version` you should recieve something like this:
+
+<img width="492" alt="image" src="https://user-images.githubusercontent.com/62410569/201500236-1c062d5c-6d8a-4fad-99b9-e311ce64a794.png">
+
+If you type in `hzn node list` you should see the fields that you exported and the URLs that are in the configuration file:
+
+<img width="505" alt="image" src="https://user-images.githubusercontent.com/62410569/201500292-57942a62-1e14-44d7-baf4-4f51e43f6375.png">
+
+You can see if Docker is also installed by typing in `docker ps`:
+
+<img width="495" alt="image" src="https://user-images.githubusercontent.com/62410569/201500363-21b21db5-6bdb-4350-926e-635a004ee6ff.png">
+
+`hzn exchange status` will give the status of the hub:
+
+<img width="543" alt="image" src="https://user-images.githubusercontent.com/62410569/201500497-edf1bb12-bfb9-4d3a-8efa-3f1b8b237b9f.png">
+
+`hzn exchange user list` will list information about the user:
+
+<img width="563" alt="image" src="https://user-images.githubusercontent.com/62410569/201500503-5067f598-75dd-4000-8823-337f110db9c9.png">
+
+> There is an issue with the Dockerfile. When performing a Docker build with `make dev`, it gives an [error](https://github.com/open-horizon-services/web-helloworld-c/issues/12).
+
 > //work in progress
