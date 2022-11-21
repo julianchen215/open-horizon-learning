@@ -59,7 +59,7 @@ Submit and sign off on a pull request to merge into the main open-horizon-servic
 I learned more about formatting in Github and how to make a table.
 
 ## Adding Makefile targets and horizon files
-This a more difficult assignment and I am currently in the process of figuring out what PHONY targets are, how to create the requested Makefiles, and how to test and verify with an Open Horizon Agent.
+This a more difficult assignment and I had figure out how to install an Open Horizon Agent onto Windows WSL2, how to create the requested Makefiles, and how to test and verify with an Open Horizon Agent.
 ### Step 1
 Fork the repository and clone the files onto your laptop.
 ### Step 2
@@ -94,10 +94,10 @@ export HZN_SDO_SVC_URL=http://132.177.125.232:9008/api
 ```
 where HZN_DEVICE_TOKEN can be your name and HZN_DEVICE_ID can be your device name. Next, create a file named `agent-install.cfg` inside the folder. Open `agent-install.cfg` and input the urls from the terminal:
 ```
-export HZN_EXCHANGE_URL=http://132.177.125.232:3090/v1
-export HZN_FSS_CSSURL=http://132.177.125.232:9443/
-export HZN_AGBOT_URL=http://132.177.125.232:3111/
-export HZN_SDO_SVC_URL=http://132.177.125.232:9008/api
+HZN_EXCHANGE_URL=http://132.177.125.232:3090/v1
+HZN_FSS_CSSURL=http://132.177.125.232:9443/
+HZN_AGBOT_URL=http://132.177.125.232:3111/
+HZN_SDO_SVC_URL=http://132.177.125.232:9008/api
 ```
 Now as **root** input the following command:
 
@@ -122,6 +122,43 @@ You can see if Docker is also installed by typing in `docker ps`:
 
 <img width="563" alt="image" src="https://user-images.githubusercontent.com/62410569/201500503-5067f598-75dd-4000-8823-337f110db9c9.png">
 
-> There is an issue with the Dockerfile. When performing a Docker build with `make dev`, it gives an [error](https://github.com/open-horizon-services/web-helloworld-c/issues/12).
+**Note:** There was a bug in the [Makefile](https://github.com/open-horizon-services/web-helloworld-c/issues/12) that prevented the Dockerfile from building. We had to [fix](https://github.com/open-horizon-services/web-helloworld-c/pull/13/commits/69c6047ffc19fa932828fe00208fdbcce7573cf2) this bug before continuing.
 
+### Step 5
+Now to build the Dockerfile, use the command `make dev`:
+
+<img width="593" alt="image" src="https://user-images.githubusercontent.com/62410569/203165860-8813d683-87b6-48bd-a1ac-b13b4a6ddbd5.png">
+
+To test if the Dockerfile works, use the command `make test`. You should see some HTML code in the terminal where the title is "MiniMosquito" and the body should be "Hello, <ip address>":
+
+<img width="508" alt="image" src="https://user-images.githubusercontent.com/62410569/203166461-1042061a-45d6-46b4-a4ce-567a81b52bba.png">
+
+Now use the command `make run` and then open a browser to localhost:8000/. You should see the same code on the webpage:
+    
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/62410569/203166825-25343888-79c4-4097-91c7-d9b361b2c051.png">
+    
+### What I Learned
+I learned new command lines and got way more practice with using some of the commands. Some examples were:
+    
+    sudo -i
+    history
+    sudo apt update
+    apt install make
+    wsl --shutdown
+    genie -l
+    sudo systemctl status time-sync.target
+    make dev
+    make test
+    make run
+    hzn version
+    hzn node list
+    hzn exchange status
+    hzn exchange user list
+    docker ps
+    
+I learned how to install an Open Horizon Agent onto Windows WSL2 and I learned a little bit about Makefiles.
+    
+## Adding README
+I am currently doing this assignment, but I would imagine that this assignment requires a lot of information and knowledge about the software that is being offered and I should do more research about this service.
+    
 > //work in progress
