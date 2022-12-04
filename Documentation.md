@@ -159,6 +159,23 @@ I learned new command lines and got way more practice with using some of the com
 I learned how to install an Open Horizon Agent onto Windows WSL2 and I learned a little bit about Makefiles.
     
 ## Adding README
-I am currently doing this assignment, but I would imagine that this assignment requires a lot of information and knowledge about the software that is being offered and I should do more research about this service.
+This assignment required a lot of information and knowledge about the software that is being offered and I had do lots of research about this service.
+    
+### Step 1
+Research about what YOLO and CUDA are
+
+![image](https://user-images.githubusercontent.com/62410569/205511506-de1a921b-2f1e-4638-9db8-0133a0e1489d.png)
+    
+### Step 2
+Fork the service-yolo-cuda repository
+    
+### Step 3
+Look up the specifications and [procedure](https://roboticsknowledgebase.com/wiki/machine-learning/ros-yolo-gpu/) for YOLO integration. 
+    
+### Step 4
+Type out the information about YOLO in an identical format to the README for the [service-node-red-object-detection](https://github.com/open-horizon-services/service-node-red-object-detection) repository.
+
+### What I Learned
+I learned what YOLO and CUDA are, and I learned how they could benefit in tandem to accelerate and ensure real-time performance.  
     
 > //work in progress
